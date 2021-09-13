@@ -83,19 +83,12 @@
     <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
     <script type="text/javascript">
 
-      var player;
-      var sdk;
-      var payments = null;
-
-    /*  VK.init(function(_vk){
-        console.log("INIT");
-      },function(){
-        console.log("ERROR");
-      },
-      '5.131');
-      */
-
       vkBridge.send('VKWebAppInit');
+      adv();
+
+      function adv(){
+        vkBridge.send('VKWebAppShowNativeAds',{ad_format:"interstitial"}).then(data => console.log(data.result););
+      }
 
       function auth(){
         vkBridge.send('VKWebAppGetUserInfo').then(_info =>{
