@@ -86,7 +86,6 @@
       var payments = null;
 
       VK.init(function(_vk){
-        sdk = _vk;
         console.log("INIT");
       },function(){
         console.log("ERROR");
@@ -94,7 +93,7 @@
       '5.131');
 
       function auth(){
-        sdk.callMethod("first_name",function(Name){
+        VK.callMethod("first_name",function(Name){
           console.log(Name);
           unityI.SendMessage('YandexSDK', 'AuthenticateSuccess', Name);
         });
