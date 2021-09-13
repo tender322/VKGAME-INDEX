@@ -94,6 +94,7 @@
       function auth(){
         vkBridge.send('VKWebAppGetUserInfo').then(_info =>{
           console.log(_info);
+          adv();
           //unityI.SendMessage('YandexSDK', 'AuthenticateSuccess', Name);
         });
         }
