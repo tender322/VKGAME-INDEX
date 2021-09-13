@@ -88,7 +88,7 @@
       adv();
 
       function adv(){
-        vkBridge.send('VKWebAppShowNativeAds',{ad_format:"Preloader"}).then(data => console.log(data.result));
+        vkBridge.send('VKWebAppShowNativeAds',{ad_format:"preloader"}).then(data => console.log(data.result));
       }
 
       function auth(){
