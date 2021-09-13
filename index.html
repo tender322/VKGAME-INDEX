@@ -87,7 +87,7 @@
       adv();
 
       function adv(){
-        vkBridge.send('VKWebAppShowNativeAds',{ad_format:"interstitial"}).then(data => console.log(data.result););
+        vkBridge.send('VKWebAppShowNativeAds',{ad_format:"interstitial"}).then(data => {console.log(data.result);});
       }
 
       function auth(){
