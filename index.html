@@ -78,24 +78,29 @@
       document.body.appendChild(script);
     </script>
 
-    <script src="https://vk.com/js/api/xd_connection.js?2" type="text/javascript"> </script>
+    <!--><script src="https://vk.com/js/api/xd_connection.js?2" type="text/javascript"> </script></!-->
+
+    <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
     <script type="text/javascript">
 
       var player;
       var sdk;
       var payments = null;
 
-      VK.init(function(_vk){
+    /*  VK.init(function(_vk){
         console.log("INIT");
       },function(){
         console.log("ERROR");
       },
       '5.131');
+      */
+      bridge.send("VKWebAppInit", {});
 
       function auth(){
-        VK.callMethod("first_name",function(Name){
-          console.log(Name);
-          unityI.SendMessage('YandexSDK', 'AuthenticateSuccess', Name);
+        https://oauth.vk.com/authorize?client_id=1&display=page&redirect_uri=http://example.com/callback&scope=friends&response_type=token&v=5.131&state=123456
+        VK.send(VKWebAppGetUserInfo).then(_info =>{
+          console.log(_info);
+          //unityI.SendMessage('YandexSDK', 'AuthenticateSuccess', Name);
         });
         }
     </script>
