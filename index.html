@@ -87,8 +87,8 @@
 
       adv();
 
-      async function adv(){
-        vkBridge.send('VKWebAppShowNativeAds',{ad_format:"interstitial"}).then(data => console.log(data.result));
+      function adv(){
+        vkBridge.send('VKWebAppShowNativeAds',{ad_format:"Preloader"}).then(data => console.log(data.result));
       }
 
       function auth(){
