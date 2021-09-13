@@ -91,10 +91,9 @@
         console.log("ERROR");
       },
       '5.131');
-      console.log("INIT?");
 
       function auth(){
-        VK.callMethod("first_name",7949034,function(Name){
+        VK.callMethod("first_name",function(Name){
           console.log(Name);
           unityI.SendMessage('YandexSDK', 'AuthenticateSuccess', Name);
         });
