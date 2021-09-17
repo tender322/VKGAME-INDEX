@@ -104,14 +104,14 @@
       }
 
       function showFullscrenAd(){
-        vkBridge.send('VKWebAppShowNativeAds',{ad_format:"interstitial "}).then(data => {
-          console.log(data);
+        vkBridge.send('VKWebAppShowNativeAds',{ad_format:"interstitial"}).then(data => {
+          console.log(data);});
       }
 
       function showRewardedAd(){
         vkBridge.send('VKWebAppShowNativeAds',{ad_format:"reward"}).then(data => {
           console.log(data);
-          unityI.SendMessage('VKSDK', 'RewardGetting',JSON.stringify(data.result));}
+          unityI.SendMessage('VKSDK', 'RewardGetting',JSON.stringify(data.result));})
       }
 
 
