@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
-    <script>//v3</script>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Unity WebGL Player | VIDEOS</title>
@@ -28,11 +27,11 @@
     </div>
     <script>
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/v7.loader.js";
+      var loaderUrl = buildUrl + "/vkv1.loader.js";
       var config = {
-        dataUrl: buildUrl + "/v7.data.unityweb",
-        frameworkUrl: buildUrl + "/v7.framework.js.unityweb",
-        codeUrl: buildUrl + "/v7.wasm.unityweb",
+        dataUrl: buildUrl + "/vkv1.data.unityweb",
+        frameworkUrl: buildUrl + "/vkv1.framework.js.unityweb",
+        codeUrl: buildUrl + "/vkv1.wasm.unityweb",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "DefaultCompany",
         productName: "VIDEOS",
@@ -78,26 +77,44 @@
       document.body.appendChild(script);
     </script>
 
-    <!--><script src="https://vk.com/js/api/xd_connection.js?2" type="text/javascript"> </script></!-->
-
     <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
     <script type="text/javascript">
 
       vkBridge.send('VKWebAppInit');
+      showFullscrenAd();
 
-      adv();
-
-      function adv(){
-        vkBridge.send('VKWebAppShowNativeAds',{ad_format:"reward"}).then(data => console.log(data.result));
-      }
 
       function auth(){
         vkBridge.send('VKWebAppGetUserInfo').then(_info =>{
           console.log(_info);
-          adv();
-          //unityI.SendMessage('YandexSDK', 'AuthenticateSuccess', Name);
+          unityI.SendMessage('VKSDK', 'AuthenticateSuccess', JSON.stringify(_info));
         });
-        }
+      }
+
+      function getUserData(){
+        vkBridge.send("VKWebAppStorageGet",{"keys":["_save"]}).then(data =>{
+        console.log(data);
+        unityI.SendMessage('VKSDK', 'DataGetting', JSON.stringify(data));
+      });}
+
+      function SetData(data){
+        console.log(data);
+        vkBridge.send('VKWebAppStorageSet',{"key": "_save" , "value": data}).then(_info =>{
+          console.log("Saved!")});
+      }
+
+      function showFullscrenAd(){
+        vkBridge.send('VKWebAppShowNativeAds',{ad_format:"interstitial "}).then(data => {
+          console.log(data);
+      }
+
+      function showRewardedAd(){
+        vkBridge.send('VKWebAppShowNativeAds',{ad_format:"reward"}).then(data => {
+          console.log(data);
+          unityI.SendMessage('VKSDK', 'RewardGetting',JSON.stringify(data.result));}
+      }
+
+
     </script>
   </body>
 </html>
